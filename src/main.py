@@ -48,14 +48,14 @@ def initialise_driver():
 
     return driver
 
-def main(driver) -> None:
+def main(driver):
     print(datetime.datetime.now())
     print("Starting")
     msg = ""
     try:
         print("driver")
         driver.get("https://visas-de.tlscontact.com/visa/ie/ieDUB2de/home")
-        time.sleep(5)
+        time.sleep(15)
         print(driver.page_source)
         elem = driver.find_element(By.XPATH, "//*[contains (text(),'Login')]")
         elem.click()
