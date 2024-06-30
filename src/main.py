@@ -55,11 +55,11 @@ def main(driver) -> None:
     try:
         print("driver")
         driver.get("https://visas-de.tlscontact.com/visa/ie/ieDUB2de/home")
-        time.sleep(1)
+        time.sleep(5)
         elem = driver.find_element(By.XPATH, "//*[contains (text(),'Login')]")
         elem.click()
         print("Found login")
-        time.sleep(5)
+        time.sleep(8)
         elem = driver.find_element(By.NAME, "username")
         elem.clear()
         elem.send_keys(os.environ["tls_user"])
