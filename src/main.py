@@ -56,6 +56,7 @@ def main(driver) -> None:
         print("driver")
         driver.get("https://visas-de.tlscontact.com/visa/ie/ieDUB2de/home")
         time.sleep(5)
+        print(driver.page_source)
         elem = driver.find_element(By.XPATH, "//*[contains (text(),'Login')]")
         elem.click()
         print("Found login")
