@@ -9,6 +9,8 @@ export interface InfraStackProps extends StackProps {
   apiKey: string;
   fullName: string;
   pascalCaseFullName: string;
+  tls_pw: string;
+  tls_user: string;
 }
 
 export class InfraStack extends Stack {
@@ -17,10 +19,11 @@ export class InfraStack extends Stack {
 
     const lambdaFunction = new DockerImageFunction(this, `${props.pascalCaseFullName}SeleniumLambda`, {
       code: DockerImageCode.fromImageAsset("../src"),
-      timeout: Duration.seconds(40),
+      timeout: Duration.seconds(50),
       functionName: `${props.fullName}-function`,
-      memorySize: 512,
-      logRetention: RetentionDays.ONE_WEEK
+      memorySize: 1024,
+      logRetention: RetentionDays.ONE_WEEK,
+      environment: {'tls_pw': props.tls_pw, 'tls_user' : props.tls_user}
     });
 
     Tags.of(lambdaFunction).add("Customer", props.applicationTag);

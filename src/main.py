@@ -2,6 +2,7 @@ import logging
 import json
 import time
 import datetime
+import os
 
 from tempfile import mkdtemp
 from selenium import webdriver
@@ -16,6 +17,7 @@ logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
 def initialise_driver():
+    print("getting driver")
     chrome_options = ChromeOptions()
     chrome_options.add_argument("--headless=new")
     chrome_options.add_argument("--no-sandbox")
@@ -41,6 +43,7 @@ def initialise_driver():
         service=service,
         options=chrome_options
     )
+    print("got driver")
 
     return driver
 
@@ -58,10 +61,10 @@ def main(driver) -> None:
         asyncio.sleep(5)
         elem = driver.find_element(By.NAME, "username")
         elem.clear()
-        elem.send_keys("name")
+        elem.send_keys(os.environ["tls_user"])
         elem = driver.find_element(By.NAME, "password")
         elem.clear()
-        elem.send_keys("pw")
+        elem.send_keys(os.environ["tls_pw"])
         elem.send_keys(Keys.RETURN)
         print("Managed login")
         asyncio.sleep(2)

@@ -11,6 +11,8 @@ const props = {
     env: {
         account: app.node.tryGetContext("accountId"),
         region: app.node.tryGetContext("region"),
+        tsl_user: app.node.tryGetContext("tls_user"),
+        tls_pw: app.node.tryGetContext("tls_pw"),
     }
 };
 
@@ -26,7 +28,9 @@ const infraStack = new InfraStack(
     {
         ...props,
         fullName: fullName,
-        pascalCaseFullName: pascalCaseFullName
+        pascalCaseFullName: pascalCaseFullName,
+        tls_pw: props.env.tls_pw,
+        tls_user: props.env.tsl_user
     }
 );
 
