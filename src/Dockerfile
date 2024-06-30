@@ -11,7 +11,7 @@ RUN ./chrome-installer.sh
 RUN rm ./chrome-installer.sh
 
 RUN pip install selenium
-RUN pip install python-telegram-bot
+RUN pip install requests
 
 COPY main.py ./
 
